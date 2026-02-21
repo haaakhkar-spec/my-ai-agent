@@ -4,7 +4,7 @@ import httpx
 
 app = FastAPI()
 
-# هذا هو المفتاح الجديد والمصلح
+# هذا هو المفتاح الجديد والمفعل حالياً
 KEY = "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"
 
 @app.get("/", response_class=HTMLResponse)
@@ -25,7 +25,7 @@ async def home():
         </head>
         <body>
             <h2 style="color:#0f0">> X-PROJECT: SYSTEM ACTIVE</h2>
-            <div id="box">تم تحديث النظام بالمفتاح الجديد. أنا جاهز للرد على أسئلتك الآن..</div>
+            <div id="box">تم تحديث المفتاح بنجاح. أنا جاهز للرد على أسئلتك الآن..</div>
             <div class="input-area">
                 <input type="text" id="userInput" placeholder="اكتب رسالتك هنا...">
                 <button onclick="ask()">إرسال</button>
