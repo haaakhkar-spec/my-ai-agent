@@ -5,7 +5,7 @@ import httpx
 app = FastAPI()
 
 # هذا هو المفتاح الجديد والمفعل حالياً
-KEY = "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"
+KEY = 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
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
