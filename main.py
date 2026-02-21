@@ -1,11 +1,11 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 import httpx
 
 app = FastAPI()
 
-# مفتاحك الخاص للذكاء الاصطناعي
-KEY = "Gsk_i1oiuUp0ZiJw6njRXctxWGdyb3FYbrhRAyrAbqu4qYrjM4RtV6un"
+# هذا هو المفتاح الجديد والمصلح
+KEY = "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"
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
@@ -15,18 +15,19 @@ async def home():
             <title>X-PROJECT AI</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <style>
-                body { background: #000; color: #0f0; font-family: monospace; padding: 20px; }
-                #box { border: 2px solid #0f0; height: 350px; overflow-y: auto; padding: 15px; background: #050505; margin-bottom: 15px; box-shadow: 0 0 10px #0f0; }
-                input { width: 70%; padding: 12px; background: #000; border: 1px solid #0f0; color: #0f0; outline: none; }
-                button { padding: 12px 20px; background: #0f0; color: #000; font-weight: bold; border: none; cursor: pointer; }
-                .msg { margin: 10px 0; border-bottom: 1px solid #111; padding-bottom: 5px; }
+                body { background: #000; color: #0f0; font-family: monospace; padding: 20px; text-align: center; }
+                #box { border: 2px solid #0f0; height: 350px; overflow-y: auto; padding: 15px; background: #050505; text-align: left; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 0 15px #0f0; }
+                .input-area { display: flex; gap: 10px; justify-content: center; }
+                input { width: 70%; padding: 12px; background: #000; border: 1px solid #0f0; color: #0f0; outline: none; border-radius: 4px; }
+                button { padding: 12px 20px; background: #0f0; color: #000; font-weight: bold; border: none; cursor: pointer; border-radius: 4px; }
+                .msg { margin: 10px 0; border-bottom: 1px solid #111; padding-bottom: 5px; line-height: 1.5; }
             </style>
         </head>
         <body>
-            <h2 style="color:#0f0">> X-PROJECT: SYSTEM READY</h2>
-            <div id="box">جاري الاتصال بالعقل الاصطناعي... تمت العملية بنجاح. أنا أسمعك الآن، تفضل بسؤالك.</div>
-            <div style="display:flex; gap:10px;">
-                <input type="text" id="userInput" placeholder="اسأل مبرمجك الخاص...">
+            <h2 style="color:#0f0">> X-PROJECT: SYSTEM ACTIVE</h2>
+            <div id="box">تم تحديث النظام بالمفتاح الجديد. أنا جاهز للرد على أسئلتك الآن..</div>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="اكتب رسالتك هنا...">
                 <button onclick="ask()">إرسال</button>
             </div>
             <script>
@@ -34,15 +35,15 @@ async def home():
                     const i = document.getElementById('userInput');
                     const b = document.getElementById('box');
                     if(!i.value) return;
-                    b.innerHTML += '<div class="msg"><b>أنت:</b> ' + i.value + '</div>';
                     const text = i.value;
+                    b.innerHTML += '<div class="msg"><b>أنت:</b> ' + text + '</div>';
                     i.value = '';
                     try {
                         const res = await fetch('/chat?q=' + encodeURIComponent(text));
                         const data = await res.json();
                         b.innerHTML += '<div class="msg" style="color:#0ff"><b>الوكيل:</b><br>' + data.a + '</div>';
                     } catch(e) {
-                        b.innerHTML += '<div style="color:red">خطأ: السيرفر لم يستجب. تأكد من تحديث Render.</div>';
+                        b.innerHTML += '<div style="color:red">خطأ: تأكد من حالة السيرفر في Render.</div>';
                     }
                     b.scrollTop = b.scrollHeight;
                 }
@@ -64,8 +65,7 @@ async def chat(q: str):
                 },
                 timeout=30.0
             )
-            result = response.json()
-            answer = result['choices'][0]['message']['content']
-            return {"a": answer}
+            data = response.json()
+            return {"a": data['choices'][0]['message']['content']}
         except Exception as e:
-            return {"a": "حدث خطأ أثناء محاولة الرد. يرجى المحاولة مرة أخرى."}
+            return {"a": "عذراً، واجهت مشكلة في الاتصال بالمخ. حاول مرة أخرى."}
