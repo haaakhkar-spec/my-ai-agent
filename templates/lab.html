@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المختبر</title>
+    <style>
+        .code-box { margin: 20px; padding: 10px; border: 1px solid #ccc; }
+        textarea { width: 100%; height: 200px; }
+    </style>
+</head>
+<body>
+    <h3>المختبر</h3>
+    
+    <div class="code-box">
+        <h4>الكود المؤقت</h4>
+        <textarea readonly>{{ code_data.current }}</textarea>
+    </div>
+    
+    <div class="code-box">
+        <h4>الكود الأساسي</h4>
+        <textarea readonly>{{ code_data.main }}</textarea>
+    </div>
+
+    <a href="/">⬅️ العودة للشات</a>
+</body>
+</html>
